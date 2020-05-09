@@ -3,6 +3,7 @@ build open source English Grammar Checker using Nodejs and HTML.
 
 Run:
 npm install
+
 npm start
 
 application runs on http://localhost:3000/
