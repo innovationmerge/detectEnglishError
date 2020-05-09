@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <head>
+        <style>
+        .button {
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+        .button2 {background-color: #008CBA;} /* Blue */
+        </style>
+    </head>
+
+    <h1>iNNovation Merge Blog: Write good English</h1>
+
+    <label for="sentence">Enter Your Sentence</label>
+    <br>
+    <textarea id="nnmTextArea" rows="6" cols="100">
+
+    </textarea>
+    <br>
+    <button class="button button2" onclick="detectEnglish()">Detect Errors</button>
+
+
+    <script type = "text/JavaScript">
+        function detectEnglish() {
+            nnmTextArea = document.getElementById("nnmTextArea").value
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    resultjson = JSON.parse(this.responseText)
+                    if(resultjson.length > 0){
+                        var resultString = ""
+                        for(k=0;k<resultjson.length;k++){
+                            position = resultjson[k]['index']+resultjson[k]['offset']
+                            resultString = resultString + "Position: "+ position + "\n" + "Reason: "+ resultjson[k]['reason'] + "\n\n"
+                        }
+                        alert(resultString)
+                    }
+                    else{
+                        alert("Great, No errors in sentence")
+                    }
+                    //document.getElementById("demo").innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("POST", "/getResult", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.send(JSON.stringify({"nnmTextArea":nnmTextArea}));            
+                
+            }
+    </script>
+</body>
+</html>
