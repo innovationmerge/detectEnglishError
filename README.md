@@ -9,7 +9,7 @@ npm start
 
 application runs on http://localhost:3000/
 
-Live Demo - https://innovationmerge.sytes.net/projects/blogErrorDetectionEnglish/
+Live Demo -https://www.innovationmerge.com/projects/blogErrorDetectionEnglish/
 
 Watch Demo video - https://youtu.be/IvOMsXTuw20
 
